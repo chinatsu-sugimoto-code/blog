@@ -13,7 +13,7 @@ import sugidog.dto.BlogRequest;
 public class DemoController {
 
 	/**
-	* ユーザー情報 Service
+	* BLOG情報 Service
 	*/
 	@Autowired
 	BlogRequest blogRequest;

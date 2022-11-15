@@ -3,7 +3,7 @@ package sugidog.dto;
 import java.io.Serializable;
 
 /*
- * データ格納してあるクラス
+ * DTO
  */
 public class BlogRequest implements Serializable {
 	/*

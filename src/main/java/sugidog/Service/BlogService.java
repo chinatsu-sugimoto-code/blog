@@ -1,4 +1,5 @@
 package sugidog.Service;
+
 import java.util.Date;
 import java.util.List;
 
@@ -19,32 +20,32 @@ import sugidog.dto.BlogRequest;
  * */
 @Service
 public class BlogService {
-	
+
 	/**
 	 * ブログ情報
 	 */
-	
+
 	@Autowired
 	BlogRepository blogRepository;
-	
+
 	/*
 	 * 
 	 * blog記事一覧　全検索した時
 	 * 
 	 * */
-	public List<Blog>serchAll() {
-		
+	public List<Blog> serchAll() {
+
 		return blogRepository.findAll();
 	}
-	
+
 	/*
 	 * blog新規登録
 	 */
-	
+
 	public void create(BlogRequest blogRequest) {
 		blogRepository.save(CreateBlog(blogRequest));
 	}
-	
+
 	/*
 	 * blogのエンティティの生成
 	 * @param blogRequest ブログ情報リクエストデータ
@@ -52,17 +53,14 @@ public class BlogService {
 	 */
 	private Blog CreateBlog(BlogRequest blogRequest) {
 		Data now = (Data) new Date();
-		
+
 		Blog blog = new Blog();
-	    blog.setTitle(blogRequest.getTitle());
-	    blog.setContents(blogRequest.getContents());
-	    blog.setCreated(blogRequest.getCreated());
-	    blog.setUpdated_at(now);
-	    
-	    return blog;
-	    		
+		blog.setTitle(blogRequest.getTitle());
+		blog.setContents(blogRequest.getContents());
+		blog.setCreated(blogRequest.getCreated());
+
+		return blog;
+
 	}
-	
-	
 
 }
