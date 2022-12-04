@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-<html 
-    xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>ブログ新規登録</title>
-<link href="/css/add.css" rel="stylesheet"></link>
-<meta charset="utf-8" />
-</head>
-<body>
-    <h1>ブログ新規登録</h1>
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!--<head-->
+<!--  th:replace="common/head :: head_fragment(title = 'ユーザー新規登録', scripts = ~{::script}, links = ~{::link})"></head>-->
+<!--<body>-->
+<div class="container">
+	<h1>Blog新規登録</h1>
+	<form th:action="@{create}" th:object="${blogRequestForm}" th:method="post">
+		<div class="form-group">
+			<label>タイトル：<span class="text-danger">※</span></label>
+			<input type="text" th:field="*{title}" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>コンテンツ：</label>
+			<input type="text" th:field="*{contents}" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>作者名：<span class="text-danger">※</span></label>
+			<input type="text" th:field="*{created}" class="form-control">
+		</div>
+		<br />
+		<div class="text-center">
+			<a href="/user/list" class="btn btn-secondary">キャンセル</a>
+			<input type="submit" value="　登録　" class="btn btn-primary">
+		</div>
+	</form>
+</div>
 </body>
+
 </html>

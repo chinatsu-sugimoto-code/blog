@@ -3,9 +3,10 @@ package sugidog.dto;
 import java.io.Serializable;
 
 /*
- * DTO
+ * blog情報　リクエストデータ
  */
 public class BlogRequest implements Serializable {
+
 	/*
 	 * タイトル
 	 */
@@ -44,11 +45,6 @@ public class BlogRequest implements Serializable {
 
 	public void setCreated(String created) {
 		this.created = created;
-	}
-
-	public void create(BlogRequest blogRequest) {
-		// TODO 自動生成されたメソッド・スタブ
-		
 	}
 
 }

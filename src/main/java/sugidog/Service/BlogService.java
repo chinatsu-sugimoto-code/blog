@@ -1,65 +1,38 @@
-package sugidog.Service;
-
-import java.util.Date;
-import java.util.List;
-
-import javax.xml.crypto.Data;
+package sugidog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sugidog.Persistense.entity.Blog;
-import sugidog.Persistense.repository.BlogRepository;
-import sugidog.dto.BlogRequest;
+import sugidog.entity.Blog;
+import sugidog.form.BlogRequestForm;
+import sugidog.repository.BlogRepository;
 
-/*
- * 
- * 
- * bぉg情報(ビジネスオブジェクト)
- * 
- * */
+/**
+ * Blog情報 Service
+ */
 @Service
 public class BlogService {
 
-	/**
-	 * ブログ情報
-	 */
-
 	@Autowired
-	BlogRepository blogRepository;
+	private BlogRepository blogRepository;
 
 	/*
-	 * 
-	 * blog記事一覧　全検索した時
-	 * 
-	 * */
-	public List<Blog> serchAll() {
-
-		return blogRepository.findAll();
-	}
-
-	/*
-	 * blog新規登録
+	 * Blog情報新規登録
+	 * @param blog
 	 */
-
-	public void create(BlogRequest blogRequest) {
-		blogRepository.save(CreateBlog(blogRequest));
-	}
-
-	/*
-	 * blogのエンティティの生成
-	 * @param blogRequest ブログ情報リクエストデータ
-	 *  
-	 */
-	private Blog CreateBlog(BlogRequest blogRequest) {
-		Data now = (Data) new Date();
-
+	public void create(BlogRequestForm blogRequestForm) {
+		//TODO:メソッドのないの実装
+		//		Date now = new Date();
 		Blog blog = new Blog();
-		blog.setTitle(blogRequest.getTitle());
-		blog.setContents(blogRequest.getContents());
-		blog.setCreated(blogRequest.getCreated());
-
-		return blog;
+//		blog.setId(1);
+		blog.setTitle(blogRequestForm.getTitle());
+		blog.setContents(blogRequestForm.getContents());
+		blog.setCreated(1);
+//		blog.setCreatedAt("2020-12-12 01:24:23");
+//		blog.setUpdated(2);
+////		blog.setUpdatedAt("2020-12-12 01:24:23");
+//		blog.setDeleteFlag(0);
+		blogRepository.save(blog);
 
 	}
 
