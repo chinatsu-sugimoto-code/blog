@@ -20,8 +20,8 @@ import lombok.Data;
 @Table(name = "blog")
 public class Blog implements Serializable {
 	/**
-	  * ID
-	  */
+	 * IDs
+	 */
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,26 +40,26 @@ public class Blog implements Serializable {
 	 *　登録ユーザーID
 	 */
 	@Column(name = "created")
-	private int created;
-	//	/**
-	//	 * 登録日
-	//	 */
-	//	@Column(name = "created_at")
-	//	private String createdAt;
-	//	/**s
-	//	 * 更新ユーザーID
-	//	 */
-	//	@Column(name = "updated")
-	//	private int updated;
-	//	/**
-	//	 * 更新日
-	//	 */
-	//	@Column(name = "updated_at")
-	//	private String updatedAt;
-	//	/**
-	//	 * 削除フラグ
-	//	 */
-	//	@Column(name = "delete_flag")
-	//	private int deleteFlag;
+	private String created;
+	/**
+	 * 登録日
+	 */
+	@Column(name = "created_at")
+	private String createdAt;
+	/**s
+	 * 更新ユーザーID
+	 */
+	@Column(name = "updated")
+	private String updated;
+	/**
+	 * 更新日
+	 */
+	@Column(name = "updated_at")
+	private String updatedAt;
+	/**
+	 * 削除フラグ
+	 */
+	@Column(name = "delete_flag")
+	private int deleteFlag;
 
 }

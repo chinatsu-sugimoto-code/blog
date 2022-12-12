@@ -1,5 +1,9 @@
 package sugidog.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,19 +25,27 @@ public class BlogService {
 	 * @param blog
 	 */
 	public void create(BlogRequestForm blogRequestForm) {
-		//TODO:メソッドのないの実装
-		//		Date now = new Date();
+
+		Date now = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String strDate = dateFormat.format(now);
 		Blog blog = new Blog();
-//		blog.setId(1);
+		
+		
+
 		blog.setTitle(blogRequestForm.getTitle());
 		blog.setContents(blogRequestForm.getContents());
-		blog.setCreated(1);
-//		blog.setCreatedAt("2020-12-12 01:24:23");
-//		blog.setUpdated(2);
-////		blog.setUpdatedAt("2020-12-12 01:24:23");
-//		blog.setDeleteFlag(0);
+		blog.setCreated(blog.getCreated());
+		blog.setCreatedAt(strDate);
+		blog.setUpdated(strDate);
+		blog.setUpdatedAt("2020-12-12 01:24:23");
+		blog.setDeleteFlag(0);
 		blogRepository.save(blog);
 
+	}
+	
+	public List<Blog> serch(){
+		return blogRepository.findAll();
 	}
 
 }

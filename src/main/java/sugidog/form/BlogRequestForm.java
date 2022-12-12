@@ -26,11 +26,11 @@ public class BlogRequestForm implements Serializable {
 	 * 更新ユーザーID
 	 */
 
-//	private String createdAt;
-//	private int updated;
-//	private String updatedAt;
-//	private int delete_flag;
-	
+	//	private String createdAt;
+	//	private int updated;
+	//	private String updatedAt;
+	//	private int delete_flag;
+
 	public String getTitle() {
 		return title;
 	}
@@ -46,33 +46,33 @@ public class BlogRequestForm implements Serializable {
 	public int getCreated() {
 		return created;
 	}
-//	public void setCreated(int created) {
-//		this.created = created;
-//	}
-//	public String getCreatedAt() {
-//		return createdAt;
-//	}
-//	public void setCreatedAt(String createdAt) {
-//		this.createdAt = createdAt;
-//	}
-//	public int getUpdated() {
-//		return updated;
-//	}
-//	public void setUpdated(int updated) {
-//		this.updated = updated;
-//	}
-//	public String getUpdatedAt() {
-//		return updatedAt;
-//	}
-//	public void setUpdatedAt(String updatedAt) {
-//		this.updatedAt = updatedAt;
-//	}
-//	public int getDelete_flag() {
-//		return delete_flag;
-//	}
-//	public void setDelete_flag(int delete_flag) {
-//		this.delete_flag = delete_flag;
-//	}
-	
-	
+	//	public void setCreated(int created) {
+	//		this.created = created;
+	//	}
+	//	public String getCreatedAt() {
+	//		return createdAt;
+	//	}
+	//	public void setCreatedAt(String createdAt) {
+	//		this.createdAt = createdAt;
+	//	}
+	//	public int getUpdated() {
+	//		return updated;
+	//	}
+	//	public void setUpdated(int updated) {
+	//		this.updated = updated;
+	//	}
+	//	public String getUpdatedAt() {
+	//		return updatedAt;
+	//	}
+	//	public void setUpdatedAt(String updatedAt) {
+	//		this.updatedAt = updatedAt;
+	//	}
+	//	public int getDelete_flag() {
+	//		return delete_flag;
+	//	}
+	//	public void setDelete_flag(int delete_flag) {
+	//		this.delete_flag = delete_flag;
+	//	}
+
+
 }

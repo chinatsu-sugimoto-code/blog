@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<!-- Bootstrapの設定 -->
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
-	<title>Blog新規登録</title>
+	<title>TOP</title>
 </head>
 
 <body>
@@ -29,28 +29,8 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="container">
-		<h1>Blog新規登録</h1>
-		<form th:action="@{create}" th:object="${blogRequestForm}" th:method="post">
-			<div class="form-group form-inline input-group-sm">
-				<label>タイトル：</label>
-				<input type="text" th:field="*{title}" class="form-control">
-			</div>
-			<div class="form-group">
-				<label>コンテンツ：</label>
-				<input type="text" th:field="*{contents}" class="form-control">
-			</div>
-			<div class="form-group">
-				<label>作者名：</label>
-				<input type="text" th:field="*{created}" class="form-control">
-			</div>
-			<br />
-			<div class="text-center">
-				<a href="/user/list" class="btn btn-secondary">キャンセル</a>
-				<input type="submit" value="　登録　" class="btn btn-primary">
-			</div>
-		</form>
-	</div>
+	<h1>トップ画面</h1>
+	<h1 th:text="${message}"></h1>
 </body>
 
 </html>
