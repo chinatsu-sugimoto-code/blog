@@ -59,7 +59,7 @@ public class DemoController {
 	public String edit(Model model) {
 
 		// ユーザー情報の登録
-		model.addAttribute("message", "Hello world");
+		model.addAttribute("message", "edit");
 		return "edit";
 	}
 	

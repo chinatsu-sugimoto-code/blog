@@ -37,8 +37,9 @@ public class BlogService {
 		blog.setContents(blogRequestForm.getContents());
 		blog.setCreated(blog.getCreated());
 		blog.setCreatedAt(strDate);
-		blog.setUpdated(strDate);
-		blog.setUpdatedAt("2020-12-12 01:24:23");
+		//更新者ID
+//		blog.setUpdated(strDate);
+		blog.setUpdatedAt(strDate);
 		blog.setDeleteFlag(0);
 		blogRepository.save(blog);
 

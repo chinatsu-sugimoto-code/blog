@@ -37,6 +37,8 @@
 				<th>コンテンツ</th>
 				<th>作成者ID</th>
 				<th>作成日</th>
+				<th>更新日</th>
+				<th>編集</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -45,6 +47,7 @@
 				<td th:text="*{contents}"></td>
 				<td th:text="*{created}"></td>
 				<td th:text="*{createdAt}"></td>
+				<td th:text="*{updatedAt}"></td>
 				<td><a class="btn btn-outline-info" th:href="@{edit}" role="button">編集</a></td>
 			</tr>
 
