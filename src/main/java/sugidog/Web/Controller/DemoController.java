@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import sugidog.Service.BlogService;
 import sugidog.form.BlogRequestForm;
-import sugidog.service.BlogService;
 
 @Controller
 public class DemoController {
