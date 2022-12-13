@@ -30,23 +30,26 @@ public class BlogService {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String strDate = dateFormat.format(now);
 		Blog blog = new Blog();
-		
-		
 
 		blog.setTitle(blogRequestForm.getTitle());
 		blog.setContents(blogRequestForm.getContents());
 		blog.setCreated(blog.getCreated());
 		blog.setCreatedAt(strDate);
 		//更新者ID
-//		blog.setUpdated(strDate);
+		//		blog.setUpdated(strDate);
 		blog.setUpdatedAt(strDate);
 		blog.setDeleteFlag(0);
 		blogRepository.save(blog);
 
 	}
-	
-	public List<Blog> serch(){
+
+	public List<Blog> serch() {
 		return blogRepository.findAll();
+	}
+
+	public Blog findbyId(int id) {
+		return blogRepository.findById(id).get();
+
 	}
 
 }

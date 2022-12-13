@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<!-- Bootstrapの設定 -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
+	<title>BlogTOP</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light bg-light mb-3">
+		<span class="navbar-toggler-icon"></span>
+
+		<div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="top">ホーム<span class="sr-only"></span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{list}">ブログ</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<!--<h2 th:text="${message}"></h2> -->
+	<main class="container">
+		<div class="overflow-hidden" style="text-align: center; margin-bottom: 3rem;">
+			<img src="https://livedoor.blogimg.jp/namekkutake/imgs/d/d/dd074719.jpg" alt="First slide">
+		</div>
+		<div class="row">
+			<div class="col">
+				<div
+					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div class="col p-4 d-flex flex-column position-static">
+						<a href="#" class="stretched-link">ブログTOP</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div
+					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div class="col p-4 d-flex flex-column position-static">
+						<a th:href="@{list}" class="stretched-link">記事一覧</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div
+					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div class="col p-4 d-flex flex-column position-static">
+						<a href="#" class="stretched-link">画像一覧</a>
+					</div>
+					<div class="col-auto d-none d-lg-block">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row g-5">
+			<div class="col-md-8">
+				<article class="blog-post" th:object="${article}">
+					<h2 class="blog-post-title" th:text="*{title}"></h2>
+					<hr>
+					<p class="blog-post-meta" th:text="*{createdAt}"><a href="#">Mark</a></p>
+
+					<p th:text="*{contents}">.</p>
+					<nav class="blog-pagination" aria-label="Pagination">
+						<a class="btn btn-outline-primary" href="#">Older</a>
+						<a class="btn btn-outline-secondary disabled" href="#" tabindex="-1"
+							aria-disabled="true">Newer</a>
+					</nav>
+				</article>
+
+			</div>
+
+			<div class="col-md-4">
+				<div class="position-sticky" style="top: 2rem;">
+					<div class="p-4 mb-3 bg-light rounded">
+						<h4 class="fst-italic">Profile</h4>
+						<p class="mb-0">柴犬の日常ブログ</p>
+					</div>
+
+					<div class="p-4">
+						<h4 class="fst-italic">Archives</h4>
+						<ol class="list-unstyled mb-0">
+							<li><a href="#">3月 2022</a></li>
+							<li><a href="#">4月 2022</a></li>
+							<li><a href="#">5月 2022</a></li>
+							<li><a href="#">6月 2022</a></li>
+							<li><a href="#">7月 2022</a></li>
+							<li><a href="#">8月 2022</a></li>
+							<li><a href="#">9月 2022</a></li>
+							<li><a href="#">10月 2022</a></li>
+							<li><a href="#">11月 2022</a></li>
+							<li><a href="#">12月 2022</a></li>
+							<li><a href="#">1月 2022</a></li>
+							<li><a href="#">2月 2022</a></li>
+						</ol>
+					</div>
+
+					<div class="p-4">
+						<h4 class="fst-italic">Tag</h4>
+						<ol class="list-unstyled">
+							<li><a href="#">柴犬がいる生活</a></li>
+							<li><a href="#">食事</a></li>
+							<li><a href="#">散歩</a></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+</body>
+
+</html>
