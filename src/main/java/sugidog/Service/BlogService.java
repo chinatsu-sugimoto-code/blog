@@ -39,6 +39,9 @@ public class BlogService {
 		//		blog.setUpdated(strDate);
 		blog.setUpdatedAt(strDate);
 		blog.setDeleteFlag(0);
+//		
+//		byte[] image = blogRequestForm.getImage().getBytes();
+//		blog.setImage(Base64.getEncoder().encodeToString(image));
 		blogRepository.save(blog);
 
 	}

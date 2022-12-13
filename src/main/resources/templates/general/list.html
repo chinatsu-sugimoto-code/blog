@@ -64,8 +64,11 @@
 					<h4 th:text="*{title}" style="color: #444444;">タイトル</h4>
 					<a th:href="@{detail/{id}(id=${result.id})}">詳細を見る→</a>
 					<p th:text="*{contents}" style="color: #444444;">コンテンツ</p>
-
+					<img src="https://gakumado.mynavi.jp/system/production/image/image/000/112/443/112443/wysiwyg_3c9b533e2a530a77a573.jpg"
+						alt="First slide" style="width: 60px; height: 45px;">
 					<p th:text="*{createdAt}" style="color: #999999;">作成日</p>
+					<!--<img th:src="*{'data:image/jpeg;base64,'+{image}}" alt="" />-->
+
 					<hr>
 				</article>
 				<nav class="blog-pagination" aria-label="Pagination">
