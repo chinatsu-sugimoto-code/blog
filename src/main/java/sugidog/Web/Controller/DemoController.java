@@ -1,11 +1,7 @@
 package sugidog.Web.Controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
-
-import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import sugidog.Service.BlogService;
 import sugidog.entity.Blog;
-import sugidog.form.BlogDetailRequestForm;
 import sugidog.form.BlogRequestForm;
 
 @Controller
@@ -40,27 +35,28 @@ public class DemoController {
 		model.addAttribute("message", "Hello world");
 
 		//画像
-		String pathname = "C:\\Users\\sugimoto\\Downloads\\25df309d-4272-4fdc-bbaa-3adbce5b5072.jpg";
-		
-		File file = new File(pathname);
-		
+
+		//		String pathname = "C:\\Users\\sugimoto\\Downloads\\25df309d-4272-4fdc-bbaa-3adbce5b5072.jpg";
+		//		
+		//		File file = new File(pathname);
+		//		
 
 		// ファイルのコンテンツタイプをしらべる
-		String contentType = Files.probeContentType(file.toPath());
-
-		// ファイル内容をbyte[]に読み込む
-		byte[] data = Files.readAllBytes(file.toPath());
-
-		// byte[]をbase64文字列に変換する(java7)
-		String base64str = DatatypeConverter.printBase64Binary(data);
-
-		StringBuilder sb = new StringBuilder();
-		sb.append("data:");
-		sb.append(contentType);
-		sb.append(";base64,");
-		sb.append(base64str);
-
-		model.addAttribute("sb", sb);
+		//		String contentType = Files.probeContentType(file.toPath());
+		//
+		//		// ファイル内容をbyte[]に読み込む
+		//		byte[] data = Files.readAllBytes(file.toPath());
+		//
+		//		// byte[]をbase64文字列に変換する(java7)
+		//		String base64str = DatatypeConverter.printBase64Binary(data);
+		//
+		//		StringBuilder sb = new StringBuilder();
+		//		sb.append("data:");
+		//		sb.append(contentType);
+		//		sb.append(";base64,");
+		//		sb.append(base64str);
+		//
+		//		model.addAttribute("sb", sb);
 		//String base64str = Base64.getEncoder().encodeToString(data);
 
 		return "list";
@@ -68,6 +64,7 @@ public class DemoController {
 
 	@GetMapping(value = "/add")
 	public String displayAdd(Model model) {
+
 		model.addAttribute("blogRequestForm", new BlogRequestForm());
 		return "add";
 	}
@@ -77,10 +74,14 @@ public class DemoController {
 	 */
 	@PostMapping("create")
 	public String create(@Validated @ModelAttribute BlogRequestForm blogRequestForm,
-			BlogDetailRequestForm blogDetailRequestForm, Model model) {
+			Model model) throws IOException {
 
+		//画像処理
+		//		MultipartFile file = blogRequestForm.getImage();
+		//		BlogDetail savedFile = blogservice.create(file);
+		//		byte[] bytes = savedFile.getData();
 		// ユーザー情報の登録
-		blogservice.create(blogRequestForm, blogDetailRequestForm);
+		blogservice.create(blogRequestForm);
 		return "create";
 	}
 

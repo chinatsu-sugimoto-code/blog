@@ -31,7 +31,7 @@
 	</nav>
 	<div class="container">
 		<h1>Blog新規登録</h1>
-		<form th:action="@{create}" th:object="${blogRequestForm}" th:method="post">
+		<form th:action="@{create}" th:object="${blogRequestForm}" th:method="post" enctype="multipart/form-data">
 			<div class="form-group form-inline input-group-sm">
 				<label>タイトル：</label>
 				<input type="text" th:field="*{title}" class="form-control">

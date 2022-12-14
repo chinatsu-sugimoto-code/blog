@@ -1,15 +1,16 @@
 package sugidog.Service;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import sugidog.entity.Blog;
 import sugidog.entity.BlogDetail;
-import sugidog.form.BlogDetailRequestForm;
 import sugidog.form.BlogRequestForm;
 import sugidog.repository.BlogDetailRepository;
 import sugidog.repository.BlogRepository;
@@ -29,7 +30,8 @@ public class BlogService {
 	 * Blog情報新規登録
 	 * @param blog
 	 */
-	public void create(BlogRequestForm blogRequestForm ,BlogDetailRequestForm blogDetailRequestForm) {
+	public void create(BlogRequestForm blogRequestForm)
+			throws IOException {
 		
 //		File fileImg = new File("img/testimg.png");
 
@@ -38,23 +40,20 @@ public class BlogService {
 		String strDate = dateFormat.format(now);
 		Blog blog = new Blog();
 		
-		BlogDetail blogDetail = new  BlogDetail();
-		blogDetail.setFkBlogId(1);
-		String image = blogRequestForm.getImage();
-		byte[] def = image.getBytes();
-		blogDetail.setImage(def);
-		blogDetail.setTags(blogRequestForm.getTags());
+		MultipartFile file = blogRequestForm.getImage();
+
+		BlogDetail FileDB = new BlogDetail(1, file.getBytes(), "タグ");
 
 		blog.setTitle(blogRequestForm.getTitle());
 		blog.setContents(blogRequestForm.getContents());
-		blog.setCreated(blog.getCreated());
+		blog.setCreated(blogRequestForm.getCreated());
 		blog.setCreatedAt(strDate);
 		blog.setUpdatedAt(strDate);
 		blog.setDeleteFlag(0);
 //		
 //		byte[] image = blogRequestForm.getImage().getBytes();
 //		blog.setImage(Base64.getEncoder().encodeToString(image));
-		blogDetailRepository.save(blogDetail);
+		blogDetailRepository.save(FileDB);
 		blogRepository.save(blog);
 
 	}

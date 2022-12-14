@@ -2,6 +2,8 @@ package sugidog.form;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /*
  * Blog情報　リクエストデータ
  */
@@ -19,10 +21,10 @@ public class BlogRequestForm implements Serializable {
 	private String contents;
 
 	//作成者ID
-	private int created;
+	private String created;
 
 	//画像データ
-	private String image;
+	private MultipartFile image;
 
 	//タグ
 	private String tags;
@@ -43,19 +45,19 @@ public class BlogRequestForm implements Serializable {
 		this.contents = contents;
 	}
 
-	public int getCreated() {
+	public String getCreated() {
 		return created;
 	}
 
-	public void setCreated(int created) {
+	public void setCreated(String created) {
 		this.created = created;
 	}
 
-	public String getImage() {
+	public MultipartFile getImage() {
 		return image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(MultipartFile image) {
 		this.image = image;
 	}
 
