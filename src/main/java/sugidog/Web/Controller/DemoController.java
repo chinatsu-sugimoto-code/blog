@@ -1,6 +1,11 @@
 package sugidog.Web.Controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
+
+import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import sugidog.Service.BlogService;
 import sugidog.entity.Blog;
+import sugidog.form.BlogDetailRequestForm;
 import sugidog.form.BlogRequestForm;
 
 @Controller
@@ -27,11 +33,36 @@ public class DemoController {
 	 * ぶろぐ一覧を画面に表示
 	 */
 	@GetMapping("/list")
-	public String demo(Model model) {
+	public String demo(Model model) throws IOException {
 
-		List<Blog> resultList =  blogservice.serch();
+		List<Blog> resultList = blogservice.serch();
 		model.addAttribute("resultList", resultList);
 		model.addAttribute("message", "Hello world");
+
+		//画像
+		String pathname = "C:\\Users\\sugimoto\\Downloads\\25df309d-4272-4fdc-bbaa-3adbce5b5072.jpg";
+		
+		File file = new File(pathname);
+		
+
+		// ファイルのコンテンツタイプをしらべる
+		String contentType = Files.probeContentType(file.toPath());
+
+		// ファイル内容をbyte[]に読み込む
+		byte[] data = Files.readAllBytes(file.toPath());
+
+		// byte[]をbase64文字列に変換する(java7)
+		String base64str = DatatypeConverter.printBase64Binary(data);
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("data:");
+		sb.append(contentType);
+		sb.append(";base64,");
+		sb.append(base64str);
+
+		model.addAttribute("sb", sb);
+		//String base64str = Base64.getEncoder().encodeToString(data);
+
 		return "list";
 	}
 
@@ -45,13 +76,14 @@ public class DemoController {
 	 * ブログ新規登録画面
 	 */
 	@PostMapping("create")
-	public String create(@Validated @ModelAttribute BlogRequestForm blogRequestForm, Model model) {
+	public String create(@Validated @ModelAttribute BlogRequestForm blogRequestForm,
+			BlogDetailRequestForm blogDetailRequestForm, Model model) {
 
 		// ユーザー情報の登録
-		blogservice.create(blogRequestForm);
+		blogservice.create(blogRequestForm, blogDetailRequestForm);
 		return "create";
 	}
-	
+
 	/*
 	 * ブログ編集画面
 	 */
@@ -62,17 +94,16 @@ public class DemoController {
 		model.addAttribute("message", "edit");
 		return "edit";
 	}
-	
+
 	/*
 	 * ブログ編集画面
 	 */
-//	@GetMapping("top")
-//	public String top(Model model) {
-//
-//		// ユーザー情報の登録
-//		model.addAttribute("message", "top");
-//		return "top";
-//	}
-
+	//	@GetMapping("top")
+	//	public String top(Model model) {
+	//
+	//		// ユーザー情報の登録
+	//		model.addAttribute("message", "top");
+	//		return "top";
+	//	}
 
 }

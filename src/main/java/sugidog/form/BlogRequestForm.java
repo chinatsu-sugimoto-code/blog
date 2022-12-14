@@ -21,8 +21,11 @@ public class BlogRequestForm implements Serializable {
 	//作成者ID
 	private int created;
 
-	//画像
+	//画像データ
 	private String image;
+
+	//タグ
+	private String tags;
 
 	public String getTitle() {
 		return title;
@@ -54,6 +57,14 @@ public class BlogRequestForm implements Serializable {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 
 }
