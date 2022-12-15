@@ -24,6 +24,10 @@ import lombok.Data;
 
 public class BlogDetail implements Serializable {
 
+	public BlogDetail() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,18 +36,16 @@ public class BlogDetail implements Serializable {
 	@Column(name = "fk_blog_id")
 	private int fkBlogId;
 
-	@Lob // ポイント2: @Lobと@Typeを以下のようにつける(@Lobはサイズが大きいデータのカラムにつけるみたい。@Typeがないと「bigintのデータが出力されてますよ」的なエラーが出る
+	// @Lobと@Typeを以下のようにつける(@Lobはサイズが大きいデータのカラムにつけるみたい。@Typeがないと「bigintのデータが出力されてますよ」的なエラーが出る
+	@Lob
 	@Type(type = "org.hibernate.type.BinaryType")
 	@Column(name = "image")
 	private byte[] image;
 
-	@Column(name = "tag")
-	private String tags;
+	@Column(name = "content_type")
+	private String contentType;
 
-	public BlogDetail(int fkBlogId, byte[] image, String tags) {
-		this.fkBlogId = fkBlogId;
-		this.image = image;
-		this.tags = tags;
-	}
+	@Column(name = "tag")
+	private String tag;
 
 }

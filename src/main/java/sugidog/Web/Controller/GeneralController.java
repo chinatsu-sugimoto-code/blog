@@ -26,9 +26,9 @@ public class GeneralController {
 	@GetMapping("/general/top")
 	public String top(Model model) {
 
-		List<Blog> resultList = blogservice.serch();
+		List<Blog> blogResultList = blogservice.blogSerch();
 		//TOPページでは、最新の記事のみを表示
-		Blog article = resultList.get(0);
+		Blog article = blogResultList.get(0);
 		model.addAttribute("article", article);
 
 		return "general/top";
@@ -40,8 +40,10 @@ public class GeneralController {
 	@GetMapping("/general/list")
 	public String list(Model model) {
 
-		List<Blog> resultList = blogservice.serch();
-		model.addAttribute("resultList", resultList);
+		List<Blog> blogResultList = blogservice.blogSerch();
+		
+		
+		model.addAttribute("resultList", blogResultList);
 
 		return "general/list";
 	}

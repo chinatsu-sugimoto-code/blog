@@ -1,12 +1,16 @@
 package sugidog.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -61,5 +65,11 @@ public class Blog implements Serializable {
 	 */
 	@Column(name = "delete_flag")
 	private int deleteFlag;
+
+	@OneToMany
+	@JoinColumns({
+			@JoinColumn(name = "fk_blog_id", referencedColumnName = "id", insertable = false, updatable = false)
+	})
+	private List<BlogDetail> blogDetailList;
 
 }

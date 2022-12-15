@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import sugidog.Service.BlogService;
-import sugidog.entity.Blog;
 import sugidog.form.BlogRequestForm;
+import sugidog.result.BlogResult;
 
 @Controller
 public class DemoController {
@@ -30,8 +30,17 @@ public class DemoController {
 	@GetMapping("/list")
 	public String demo(Model model) throws IOException {
 
-		List<Blog> resultList = blogservice.serch();
-		model.addAttribute("resultList", resultList);
+		List<BlogResult> result = blogservice.result();
+
+//		List<Blog> blogResultList = blogservice.blogSerch();
+//
+//		//
+//		List<BlogDetail> blogDetailResultList = blogservice.blogDitailSerch();
+
+
+		model.addAttribute("result", result);
+//		model.addAttribute("blogResultList", blogResultList);
+//		model.addAttribute("blogDetailResultList", blogDetailResultList);
 		model.addAttribute("message", "Hello world");
 
 		//画像

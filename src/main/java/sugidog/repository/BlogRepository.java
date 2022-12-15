@@ -9,6 +9,7 @@ import sugidog.entity.Blog;
  * Blog情報 Repository
  */
 @Repository
+
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
 
 }
