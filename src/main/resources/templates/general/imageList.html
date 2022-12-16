@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<!-- Bootstrapの設定 -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
+	<title>画像一覧ページ</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light bg-light mb-3">
+		<span class="navbar-toggler-icon"></span>
+
+		<div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="top">ホーム<span class="sr-only"></span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{list}">ブログ</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<h2 class="blog-post-title">画像一覧</h2>
+	<article class="blog-post" th:each="images:${imageList}" th:object="${image}">
+
+		<p th:text="${images.tag}" style="color: #444444;">コンテンツ</p>
+		<img th:src=" 'data:' + ${images.contentType} + ';base64,' + ${images.image}" style="max-width:200px;">
+	</article>
+
+
+</body>
+
+</html>

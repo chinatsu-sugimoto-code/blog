@@ -18,8 +18,8 @@ import sugidog.entity.BlogDetail;
 import sugidog.form.BlogRequestForm;
 import sugidog.repository.BlogDetailRepository;
 import sugidog.repository.BlogRepository;
+import sugidog.result.BlogDetailResult;
 import sugidog.result.BlogResult;
-import sugidog.result.TestResult;
 
 /**
  * Blog情報 Service
@@ -42,20 +42,10 @@ public class BlogService {
 	public void create(BlogRequestForm blogRequestForm)
 			throws IOException {
 
-		//		File fileImg = new File("img/testimg.png");
-
 		Date now = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String strDate = dateFormat.format(now);
 		Blog blog = new Blog();
-
-		MultipartFile file = blogRequestForm.getImage();
-
-		BlogDetail blogDetail = new BlogDetail();
-		blogDetail.setFkBlogId(2);
-		blogDetail.setImage(file.getBytes());
-		blogDetail.setContentType(file.getContentType());
-		blogDetail.setTag(blogRequestForm.getTags());
 
 		blog.setTitle(blogRequestForm.getTitle());
 		blog.setContents(blogRequestForm.getContents());
@@ -63,43 +53,51 @@ public class BlogService {
 		blog.setCreatedAt(strDate);
 		blog.setUpdatedAt(strDate);
 		blog.setDeleteFlag(0);
+		Blog newBlog = blogRepository.save(blog);
+
+		MultipartFile file = blogRequestForm.getImage();
+
+		BlogDetail blogDetail = new BlogDetail();
+		blogDetail.setFkBlogId(newBlog.getId());
+		blogDetail.setImage(file.getBytes());
+		blogDetail.setContentType(file.getContentType());
+		blogDetail.setTag(blogRequestForm.getTags());
+
 		blogDetailRepository.save(blogDetail);
-		blogRepository.save(blog);
 
 	}
 
 	public List<BlogResult> result() {
 
-
 		List<Blog> blogResult = blogRepository.findAll();
 
 		List<BlogResult> blogResultList = new ArrayList<>();
 
-		List<TestResult> testList = new ArrayList<>();
-
-
 		for (Blog blog : blogResult) {
-			
+
+			List<BlogDetailResult> blogDetailResultList = new ArrayList<>();
 			BlogResult result = new BlogResult();
-			TestResult test = new TestResult();
-			
+
+			result.setId(blog.getId());
 			result.setTitle(blog.getTitle());
 			result.setContents(blog.getContents());
-			result.setCreated(blog.getCreated());
 
-			List<BlogDetail> blogilList = blog.getBlogDetailList();
+			for (BlogDetail detail : blog.getBlogDetailList()) {
 
-			for (BlogDetail detail : blogilList) {
+				BlogDetailResult detailResult = new BlogDetailResult();
+
 				byte[] bytes = detail.getImage();
 				String image = Base64.getEncoder().encodeToString(bytes);
-				test.setImage(image);
-				test.setContentType(detail.getContentType());
-				test.setTag(detail.getTag());
-				testList.add(test);
-				result.setDetailList(testList);
+				detailResult.setImage(image);
+
+				detailResult.setContentType(detail.getContentType());
+				detailResult.setTag(detail.getTag());
+				blogDetailResultList.add(detailResult);
+
 			}
 
-			
+			result.setDetailList(blogDetailResultList);
+
 			blogResultList.add(result);
 		}
 

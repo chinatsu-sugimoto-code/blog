@@ -4,13 +4,23 @@ import java.util.List;
 
 public class BlogResult {
 
+	private int id;
+
 	private String title;
 
 	private String contents;
 
 	private String created;
 
-	private List<TestResult> detailList;
+	private List<BlogDetailResult> detailList;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;
@@ -36,11 +46,11 @@ public class BlogResult {
 		this.created = created;
 	}
 
-	public List<TestResult> getDetailList() {
+	public List<BlogDetailResult> getDetailList() {
 		return detailList;
 	}
 
-	public void setDetailList(List<TestResult> detailList) {
+	public void setDetailList(List<BlogDetailResult> detailList) {
 		this.detailList = detailList;
 	}
 

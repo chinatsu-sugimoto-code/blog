@@ -24,19 +24,16 @@
 		</div>
 	</nav>
 	<main class="container">
-		<div class="overflow-hidden" style="text-align: center; margin-bottom: 3rem;">
-			<img src="https://livedoor.blogimg.jp/namekkutake/imgs/d/d/dd074719.jpg" alt="First slide">
-			<img src="https://livedoor.blogimg.jp/namekkutake/imgs/d/d/dd074719.jpg" alt="First slide">
+		<div class="overflow-hidden" style="background-color: #725846;text-align: center; margin-bottom: 3rem;">
+			<img src="https://media.istockphoto.com/id/1197121742/ja/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88/%E9%BB%84%E8%89%B2%E3%81%AE%E5%B9%B8%E3%81%9B%E3%81%AA%E6%9F%B4%E7%8A%AC%E7%8A%AC%E8%B5%A4%E6%AF%9B%E3%81%AE%E6%97%A5%E6%9C%AC%E7%8A%AC%E3%81%AE%E7%AC%91%E9%A1%94%E3%81%AE%E8%82%96%E5%83%8F%E7%94%BB.jpg?s=612x612&w=0&k=20&c=sue52jzmexnmPC2yQimaqVZdSWM8ibpcW0Et966QxI0="
+				alt="First slide">
 		</div>
-		<!-- winのPCの画像-->
-		<img th:src="${sb}">
-
 		<div class="row">
 			<div class="col">
 				<div
 					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<a href="#" class="stretched-link">ブログTOP</a>
+						<a th:href="@{top}" class="stretched-link">ブログTOP</a>
 					</div>
 				</div>
 			</div>
@@ -44,7 +41,7 @@
 				<div
 					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<a th:href="@{top}" class="stretched-link">記事一覧</a>
+						<a th:href="@{list}" class="stretched-link">記事一覧</a>
 					</div>
 				</div>
 			</div>
@@ -52,7 +49,7 @@
 				<div
 					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<a href="#" class="stretched-link">画像一覧</a>
+						<a th:href="@{imageList}" class="stretched-link">画像一覧</a>
 					</div>
 					<div class="col-auto d-none d-lg-block">
 					</div>
@@ -64,22 +61,14 @@
 				<h2 class="blog-post-title">新着記事</h2>
 				<hr>
 				<article class="blog-post" th:each="result:${resultList}" th:object="${result}">
-					<h4 th:text="*{title}" style="color: #444444;">タイトル</h4>
+					<h4 th:text="${result.title}" style="color: #444444;">タイトル</h4>
 					<a th:href="@{detail/{id}(id=${result.id})}">詳細を見る→</a>
-					<p th:text="*{contents}" style="color: #444444;">コンテンツ</p>
-					<img src="https://gakumado.mynavi.jp/system/production/image/image/000/112/443/112443/wysiwyg_3c9b533e2a530a77a573.jpg"
-						alt="First slide" style="width: 60px; height: 45px;">
-					<p th:text="*{createdAt}" style="color: #999999;">作成日</p>
-					<img src="data:image/png;base64,UE5HX3RyYW5zcGFyZW5jeV9kZW1vbnN0cmF0aW9uXzEucG5n" alt=""
-						style="width: 60px; height: 45px;">
-					<p>画像表示</p>
-					<!--<img th:src="${base64Data}">-->
-					<img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-						style="max-width:200px;">
-
-					<img
-						src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAABkCAMAAAD0WI85AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3VpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDM1MiwgMjAyMC8wMS8zMC0xNTo1MDozOCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpiODViMDYzZC0yY2ZiLTRlMDUtYTA3YS04NTEzNDlkMDY5OTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NkVDQTI3N0E3OTc4MTFFQUEyRkFCRDY5Q0FERDFGNzYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NkVDQTI3Nzk3OTc4MTFFQUEyRkFCRDY5Q0FERDFGNzYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjEgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NDQyNWVjOC04NzBjLTQzZTMtYmQ2MS1hMzI2MjJiNzlhNzgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Yjg1YjA2M2QtMmNmYi00ZTA1LWEwN2EtODUxMzQ5ZDA2OTkzIi8+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">
-					<hr>
+					<p th:text="${result.contents}" style="color: #444444;">コンテンツ</p>
+					<th:block th:each="detail : ${result.detailList}">
+						<img th:src=" 'data:' + ${detail.contentType} + ';base64,' + ${detail.image}"
+							style="max-width:200px;">
+							<p th:text="${detail.tag}">
+					</th:block>
 				</article>
 				<nav class="blog-pagination" aria-label="Pagination">
 					<a class="btn btn-outline-primary" href="#">Older</a>
@@ -90,12 +79,15 @@
 
 			<div class="col-md-4">
 				<div class="position-sticky" style="top: 2rem;">
-					<div class="p-4 mb-3 bg-light rounded">
+					<div class="p-4 mb-3  rounded " style="text-align:center;">
 						<h4 class="fst-italic">Profile</h4>
+
+						<img src="https://images.pexels.com/photos/4588027/pexels-photo-4588027.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							alt="写真" style="text-align:center; border-radius: 50%; width:130px; height: 130px;">
 						<p class="mb-0">柴犬の日常ブログ</p>
 					</div>
 
-					<div class="p-4">
+					<div class="p-4" style="text-align:center;">
 						<h4 class="fst-italic">Archives</h4>
 						<ol class="list-unstyled mb-0">
 							<li><a href="#">3月 2022</a></li>
@@ -115,10 +107,8 @@
 
 					<div class="p-4">
 						<h4 class="fst-italic">Tag</h4>
-						<ol class="list-unstyled">
-							<li><a href="#">柴犬がいる生活</a></li>
-							<li><a href="#">食事</a></li>
-							<li><a href="#">散歩</a></li>
+						<ol th:each="blogDetail:${blogDetailList}" th:object="${blogDetail}" class="align-middle">
+							<a href="#" th:text="${blogDetail.tag}"></a>
 						</ol>
 					</div>
 				</div>

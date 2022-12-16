@@ -33,7 +33,7 @@
 				<div
 					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<a href="#" class="stretched-link">ブログTOP</a>
+						<a th:href="@{general/top}" class="stretched-link">ブログTOP</a>
 					</div>
 				</div>
 			</div>
@@ -49,14 +49,13 @@
 				<div
 					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<a href="#" class="stretched-link">画像一覧</a>
+						<a th:href="@{imageList}" class="stretched-link">画像一覧</a>
 					</div>
 					<div class="col-auto d-none d-lg-block">
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<div class="row g-5">
 
 			<div class="col-md-8">
@@ -66,15 +65,14 @@
 					<p class="blog-post-meta" th:text="*{createdAt}"><a href="#">Mark</a></p>
 
 					<p th:text="*{contents}"></p>
-					<img src="https://thumb.photo-ac.com/28/28d513e8e1f41278c6a338627faa2226_t.jpeg"
-						alt="First slide" style="width: 200px; height:160px;">
-					<nav class="blog-pagination" aria-label="Pagination">
-						<a class="btn btn-outline-primary" href="#">Older</a>
-						<a class="btn btn-outline-secondary disabled" href="#" tabindex="-1"
-							aria-disabled="true">Newer</a>
-					</nav>
+					<!--
+					<th:block th:each="detail : ${article.detailList}">
+						<img th:src=" 'data:' + ${detail.contentType} + ';base64,' + ${detail.image}"
+							style="max-width:200px;">
+						<p th:text="${detail.tag}">
+					</th:block>
+					 -->
 				</article>
-
 			</div>
 
 			<div class="col-md-4">

@@ -1,6 +1,6 @@
 package sugidog.result;
 
-public class TestResult {
+public class BlogDetailResult {
 
 	private int id;
 
