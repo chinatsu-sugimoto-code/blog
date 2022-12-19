@@ -24,7 +24,7 @@ import lombok.Data;
 @Table(name = "blog")
 public class Blog implements Serializable {
 	/**
-	 * IDs
+	 * ID
 	 */
 	@Id
 	@Column(name = "id")

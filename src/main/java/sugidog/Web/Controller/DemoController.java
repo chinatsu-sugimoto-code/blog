@@ -64,16 +64,4 @@ public class DemoController {
 		model.addAttribute("message", "edit");
 		return "edit";
 	}
-
-	/*
-	 * ブログ編集画面
-	 */
-	//	@GetMapping("top")
-	//	public String top(Model model) {
-	//
-	//		// ユーザー情報の登録
-	//		model.addAttribute("message", "top");
-	//		return "top";
-	//	}
-
 }
