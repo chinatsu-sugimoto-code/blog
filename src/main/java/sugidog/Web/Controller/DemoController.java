@@ -25,7 +25,7 @@ public class DemoController {
 	BlogService blogservice;
 
 	/*
-	 * ぶろぐ一覧を画面に表示
+	 * ブログ一覧を画面に表示
 	 */
 	@GetMapping("/list")
 	public String demo(Model model) throws IOException {

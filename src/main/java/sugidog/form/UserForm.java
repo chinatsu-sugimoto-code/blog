@@ -2,20 +2,18 @@ package sugidog.form;
 
 public class UserForm {
 
-	private String loginId;
-	
-	private String password;
-	
-	private String userName;
-	
-	private String age;
+	private String email;
 
-	public String getLoginId() {
-		return loginId;
+	private String password;
+
+	private String[] roles;
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLoginId(String loginId) {
-		this.loginId = loginId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -26,20 +24,12 @@ public class UserForm {
 		this.password = password;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String[] getRoles() {
+		return roles;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getAge() {
-		return age;
-	}
-
-	public void setAge(String age) {
-		this.age = age;
+	public void setRoles(String[] roles) {
+		this.roles = roles;
 	}
 
 }

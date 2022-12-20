@@ -1,7 +1,5 @@
 package sugidog.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,24 +11,24 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "user")
-public class User implements Serializable {
-	
+@Table(name = "users")
+public class User {
+
 	@Id
-	@Column(name = "account_id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int accountId;
-	
-	@Column(name = "login_id")
-	private String loginId;
-	
+	private int id;
+
+	@Column(name = "email")
+	private String email;
+
 	@Column(name = "password")
 	private String password;
-	
-	@Column(name = "user_name")
-	private String userName;
-	
-	@Column(name = "age")
-	private String age;	
+
+	@Column(name = "roles")
+	private String roles;
+
+	public User() {
+	}
 
 }

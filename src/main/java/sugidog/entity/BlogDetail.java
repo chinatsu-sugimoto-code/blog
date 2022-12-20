@@ -36,7 +36,7 @@ public class BlogDetail implements Serializable {
 	@Column(name = "fk_blog_id")
 	private int fkBlogId;
 
-	// @Lobと@Typeを以下のようにつける(@Lobはサイズが大きいデータのカラムにつけるみたい。@Typeがないと「bigintのデータが出力されてますよ」的なエラーが出る
+	// @Lobはサイズが大きいデータのカラムにつける
 	@Lob
 	@Type(type = "org.hibernate.type.BinaryType")
 	@Column(name = "image")

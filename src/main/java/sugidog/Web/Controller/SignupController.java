@@ -23,7 +23,7 @@ public class SignupController {
 	 * ユーザー新規登録画面
 	 */
 	@GetMapping(value = "/user/register")
-	public String postSignUp(@Validated @ModelAttribute UserForm userForm, Model model) {
+	public String postSignUp(Model model) {
 
 		model.addAttribute("userForm", new UserForm());
 

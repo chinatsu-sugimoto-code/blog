@@ -12,7 +12,7 @@
 		<div class="page-header">
 			<h1>ユーザー登録画面</h1>
 		</div>
-		<form method="post" th:action="@{/signup}" th:object="${userForm}">
+		<form th:action="@{/signup}" th:object="${userForm}" method="post">
 			<table class="table table-bordered table-hover">
 				<!-- ユーザーID -->
 				<tr>
@@ -50,6 +50,15 @@
 						</div>
 					</td>
 				</tr>
+				<!-- プロフィール画像
+				<tr>
+					<th class="active">プロフィール画像</th>
+					<td>
+						<div class="form-group">
+							<input type="file" th:field="*{image}">
+						</div>
+					</td>
+				</tr>-->
 			</table>
 			<button class="btn btn-primary" type="submit">ユーザー登録</button>
 		</form>

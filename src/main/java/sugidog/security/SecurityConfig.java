@@ -1,61 +1,53 @@
 //package sugidog.security;
 //
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.builders.WebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //
-///**
-// * SpringSecurityを利用するための設定クラス
-// * ログイン処理でのパラメータ、画面遷移や認証処理でのデータアクセス先を設定する
-// */
+//import sugidog.Service.UserService;
+//
+//
+//
 //@SuppressWarnings("deprecation")
+//@Configuration
 //@EnableWebSecurity
 //public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
-//	/**
-//	 * 認可設定を無視するリクエストを設定
-//	 * 静的リソース(image,javascript,css)を認可処理の対象から除外する
-//	 */
-//	@Override
-//	public void configure(WebSecurity web) throws Exception {
-//		web.ignoring()
-//				.antMatchers("/resources/**");
-//		/**
-//		* その他の例
-//		* .antMatchers("/images/**")
-//		* .antMatchers("/css/**")
-//		* .antMatchers("/javascript/**")
-//		* .antMatchers("/js/**")
-//		*　,で繋げて連続で書くことも可能
-//		*　.antMatchers("/images/**","/css/**");
-//		*/
-//	}
+//	//UserDetailsServiceを利用出来るように＠Autowiredしておく
+//    @Autowired
+//    private UserService userDetailsService;
 //
 //	/**
 //	 * 認証・認可の情報を設定する
 //	 */
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests()
-//				.antMatchers("/login").permitAll()
-//				.anyRequest().authenticated();
-//
-//		http.formLogin()
-//				.defaultSuccessUrl("/sample")
+//		http.authorizeRequests()//認証が必要となるURLを設定
+//				.antMatchers("/login", "/general/**", "/css/**").permitAll()
+//				.anyRequest().authenticated()//それ以外は認証必要
+//				.and()
+//				.formLogin()//ログインページに飛ばす
+//				.loginProcessingUrl("/login")
+//				.loginPage("/login")
 //				.usernameParameter("username")
-//				.passwordParameter("password")
-//				.defaultSuccessUrl("/sample", true)
-//				.failureUrl("/eroor")
-//				.permitAll();
+//				.passwordParameter("password");
 //	}
-//    /**
-//     * 認証時に利用するデータソースを定義する設定メソッド
-//     * ここではDBから取得したユーザ情報をuserDetailsServiceへセットすることで認証時の比較情報としている
-//     */
-////    @Autowired
-////    public void configure(AuthenticationManagerBuilder auth) throws Exception{
-////        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-////    }
 //
+//	/**
+//	 * ユーザ情報の取得
+//	 */
+//		@Autowired
+//		public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//			auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//		}
+//
+//	// パスワードハッシュ化する
+//	public BCryptPasswordEncoder passwordEncoder() {
+//		BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+//		return bcpe;
+//	}
 //}
