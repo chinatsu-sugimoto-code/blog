@@ -29,7 +29,6 @@
 		</div>
 	</nav>
 	<h1>Blog情報一覧</h1>
-	<p>画像テスト</p>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -59,6 +58,9 @@
 	</table>
 
 	<a class="btn btn-primary" th:href="@{add}" role="button">新規登録</a>
+	<form role="form" id="logout" th:action="@{/logout}" method="post">
+		<button type="submit" class="btn btn-primary">ログアウト</button>
+	</form>
 
 </body>
 <!-- Bootstrapの設定 -->

@@ -8,15 +8,15 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="container" style="text-align: center;">
 		<h1 class="my-3">ログイン</h1>
-		<hr>
+
 		<!--ログインエラー時にメッセージを表示 -->
 		<div th:if="${param.error}" class="alert alert-danger">
 			名前またはパスワードが正しくありません
 		</div>
-		<!-- -->
-		<form method="POST" th:action="@{/login}">
+		<!-- 		-->
+		<form method="POST" th:action="@{/login}" class="form-signin">
 			<div>
 				<p>メールアドレス</p>
 				<p><input type="text" name="email" /></p>
@@ -26,9 +26,10 @@
 				<p><input type="password" name="password" /></p>
 			</div>
 			<div>
-				<button type="submit">ログイン</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
 			</div>
 		</form>
+
 	</div>
 
 </body>

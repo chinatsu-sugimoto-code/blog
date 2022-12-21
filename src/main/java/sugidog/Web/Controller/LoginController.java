@@ -1,36 +1,38 @@
 package sugidog.Web.Controller;
 
-
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import sugidog.Service.DefaultUserDetailsService;
 
 @Controller
 
 public class LoginController {
 
-	//ログイン画面への遷移
 	@GetMapping("/login")
-	String getLogin(Model model) {
+	public String login() {
 		return "login";
 	}
 
-	@GetMapping("/eroor") //errorが発生した際はエラーメッセージを表示したいので違う処理に入るように制御する
-	public String getLoginError(Model model) {
-		model.addAttribute("ErrorMessage", "*ユーザー名もしくはパスワードが一致しません");
-		return "login";
-	}
+	@GetMapping("/test")
+	public String test(Model model) {
 
-	//デフォルトではPostでリクエストが発生。カスタマイズ時はユーザーが指定したmethodに従う。
-//	@PostMapping("/login")
-//	public String postLogin(Model model) {
-//
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		 String userName = auth.getName();
-//		 model.addAttribute("userName", userName);
-//		
-//		return "sample";
-//	}
+		//ログインしているユーザーの情報を取得
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication.getPrincipal() instanceof DefaultUserDetailsService) {
+
+			DefaultUserDetailsService user = DefaultUserDetailsService.class.cast(authentication.getPrincipal());
+
+			model.addAttribute("userInfo", "現在ログインしているユーザ名：" + user.getClass().getName() + "をコントローラクラスから取得しました。");
+
+		} else {
+			model.addAttribute("userInfo", "aaa");
+		}
+
+		return "test";
+	}
 
 }

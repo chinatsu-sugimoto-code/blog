@@ -1,28 +1,31 @@
 package sugidog.Service;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import sugidog.entity.User;
-import sugidog.form.UserForm;
 import sugidog.repository.UserRepository;
 
 @Service
-public class UserService  {
+public class UserService {
 
 	@Autowired
-	private UserRepository userRepository;
+	UserRepository userRepository;
 
-	public void createUser(UserForm userForm) throws IOException {
+	@Lazy
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
+	public void createUser(String email, String rawPassword, String[] roles) {
 
 		User user = new User();
-		user.setEmail(userForm.getEmail());
+		user.setEmail(email);
 		//passwordはハッシュ化する
-//		user.setPassword();
-		user.setRoles(String.join(",", userForm.getRoles()));
-	
+		user.setPassword(passwordEncoder.encode(rawPassword));
+		user.setRoles(String.join(",", roles));
+
 		userRepository.save(user);
 
 	}

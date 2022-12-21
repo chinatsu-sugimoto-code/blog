@@ -1,5 +1,7 @@
 package sugidog.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
 	@Id
 	@Column(name = "id")
@@ -27,8 +29,5 @@ public class User {
 
 	@Column(name = "roles")
 	private String roles;
-
-	public User() {
-	}
 
 }
