@@ -34,18 +34,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				//ログイン画面とユーザー登録画面は誰でもアクセス可能
-				.antMatchers("/login", "/user/**", "/register").permitAll()
+				.antMatchers("/user/login", "/user/register").permitAll()
 				//それ以外は認証必要
 				.anyRequest().authenticated();
 		http
 				.formLogin()
 				.usernameParameter("email")
 				.passwordParameter("password")
-				.loginPage("/login")
+				.loginPage("/user/login")
 				.loginProcessingUrl("/login")
-				.failureUrl("/login?error=1")
-				.defaultSuccessUrl("/test", true);
-		http.logout().logoutSuccessUrl("/login").permitAll();
+				.failureUrl("/usre/login?error=1")
+				.defaultSuccessUrl("/user/home", true);
+		http.logout().logoutSuccessUrl("/user/login").permitAll();
 
 	}
 

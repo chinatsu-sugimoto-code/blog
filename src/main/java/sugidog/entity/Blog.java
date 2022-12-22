@@ -31,6 +31,11 @@ public class Blog implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	/**
+	 * ユーザー名
+	 */
+	@Column(name = "fk_user_name")
+	private String fkUserName;
+	/**
 	 * タイトル
 	 */
 	@Column(name = "title")

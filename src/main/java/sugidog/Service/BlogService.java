@@ -39,7 +39,7 @@ public class BlogService {
 	 */
 
 	@ElementCollection
-	public void create(BlogRequestForm blogRequestForm)
+	public void create(BlogRequestForm blogRequestForm, String name)
 			throws IOException {
 
 		Date now = new Date();
@@ -47,6 +47,8 @@ public class BlogService {
 		String strDate = dateFormat.format(now);
 		Blog blog = new Blog();
 
+
+		blog.setFkUserName(name);
 		blog.setTitle(blogRequestForm.getTitle());
 		blog.setContents(blogRequestForm.getContents());
 		blog.setCreated(blogRequestForm.getCreated());
@@ -104,6 +106,7 @@ public class BlogService {
 		return blogResultList;
 
 	}
+	
 
 	public List<Blog> blogSerch() {
 		return blogRepository.findAll();

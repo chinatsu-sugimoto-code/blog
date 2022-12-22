@@ -12,7 +12,7 @@
 		<div class="page-header">
 			<h1>ユーザー登録画面</h1>
 		</div>
-		<form method="POST" th:action="@{/test}" th:object="${registerForm}">
+		<form method="POST" th:action="@{/userCreate}" th:object="${registerForm}">
 			<div>
 				<p>メールアドレス</p>
 				<p><input type="text" name="email" th:value="*{email}" /></p>

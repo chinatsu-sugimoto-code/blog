@@ -21,29 +21,24 @@ public class UserRegisterController {
 	UserService userService;
 
 	//登録画面
-	@GetMapping("/register")
+	@GetMapping("/user/register")
 	public String register(Model model) {
 		model.addAttribute("registerForm", new RegisterForm());
-		return "register";
+		return "user/register";
 	}
 
 	//登録画面で登録された時の処理
-	@PostMapping("/test")
+	@PostMapping("/userCreate")
 	public String postRegister(
 			@ModelAttribute RegisterForm registerForm,
 			BindingResult bindingResult) throws IOException {
-		//		if (bindingResult.hasErrors()) {
-		//			// エラーがある場合は、エラーメッセージを表示したいので
-		//			// View をレンダリングする。
-		//			return "register";
-		//		}
 
 		String[] test = { "ADMIN", "USER" };
 		userService.createUser(
 				registerForm.getEmail(),
 				registerForm.getPassword(), test);
 
-		// ユーザー登録処理が成功したらログイン画面にリダイレクトする。
+		// ユーザー登録処理が成功したらログイン画面にリダイレクト
 		return "redirect:/login";
 	}
 
