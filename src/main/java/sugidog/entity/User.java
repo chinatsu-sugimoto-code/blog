@@ -33,12 +33,17 @@ public class User implements Serializable {
 
 	@Column(name = "roles")
 	private String roles;
-	
+
 	@OneToMany
 	@JoinColumns({
 			@JoinColumn(name = "fk_user_name", referencedColumnName = "email", insertable = false, updatable = false)
 	})
 	private List<Blog> blogList;
 
+	@OneToMany
+	@JoinColumns({
+			@JoinColumn(name = "fk_user_name", referencedColumnName = "email", insertable = false, updatable = false)
+	})
+	private List<UserDetail> userDetailList;
 
 }

@@ -30,10 +30,15 @@
 			</ul>
 		</div>
 	</nav>
-	<main class="container">
-
-		<h3 th:text="'こんにちは！' + ${name} + 'さん'"></h3>
-		<hr>
+	<main class="container" th:object="${userDetailResult}">
+		<div style="text-align: center;">
+			<h3 th:text="'こんにちは！' + ${userDetailResult.nickName} + 'さん'"></h3>
+			<img th:src=" 'data:' + ${userDetailResult.contentType} + ';base64,' + ${userDetailResult.image}"
+				style="max-width:200px; border-radius: 50%; width:130px; height: 130px;">
+			<p th:text="${userDetailResult.selfIntroducion}"></p>
+			性別：<th:block th:text="${userDetailResult.sex}"></th:block>
+			<hr>
+		</div>
 		<div class="row">
 			<div class="col">
 				<div

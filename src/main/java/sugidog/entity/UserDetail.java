@@ -1,7 +1,5 @@
 package sugidog.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,22 +13,24 @@ import org.hibernate.annotations.Type;
 import lombok.Data;
 
 /*
- * Blog詳細情報 Entityクラス
+ * User詳細情報 Entityクラス
  */
 
 @Entity
 @Data
-@Table(name = "blog_detail")
-
-public class BlogDetail implements Serializable {
+@Table(name = "user_detail")
+public class UserDetail {
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "fk_blog_id")
-	private int fkBlogId;
+	@Column(name = "fk_user_name")
+	private String fkUserName;
+
+	@Column(name = "nickname")
+	private String nickName;
 
 	// @Lobはサイズが大きいデータのカラムにつける
 	@Lob
@@ -38,10 +38,13 @@ public class BlogDetail implements Serializable {
 	@Column(name = "image")
 	private byte[] image;
 
+	@Column(name = "sex")
+	private String sex;
+
+	@Column(name = "self_introducion")
+	private String selfIntroducion;
+
 	@Column(name = "content_type")
 	private String contentType;
-
-	@Column(name = "tag")
-	private String tag;
 
 }

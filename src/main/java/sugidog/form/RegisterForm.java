@@ -1,28 +1,26 @@
 package sugidog.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class RegisterForm {
 
 	private String email;
 
 	private String password;
 
-	public RegisterForm() {
-	}
+	private String nickName;
 
-	public String getEmail() {
-		return email;
-	}
+	private MultipartFile image;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	private String sex;
 
-	public String getPassword() {
-		return password;
-	}
+	private String selfIntroducion;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	private String contentType;
 
 }

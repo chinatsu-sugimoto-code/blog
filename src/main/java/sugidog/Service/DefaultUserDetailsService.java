@@ -22,8 +22,7 @@ public class DefaultUserDetailsService implements UserDetailsService {
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository
-				.findByEmail(username)
-				.orElseThrow(() -> new UsernameNotFoundException("user not found"));
+				.findByEmail(username);
 
 		Collection<GrantedAuthority> authority = Arrays.stream(user.getRoles().split(","))
 				.map((role) -> new SimpleGrantedAuthority(role))

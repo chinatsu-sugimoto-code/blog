@@ -35,11 +35,10 @@ public class UserRegisterController {
 
 		String[] test = { "ADMIN", "USER" };
 		userService.createUser(
-				registerForm.getEmail(),
-				registerForm.getPassword(), test);
+				registerForm, test);
 
 		// ユーザー登録処理が成功したらログイン画面にリダイレクト
-		return "redirect:/login";
+		return "redirect:/user/login";
 	}
 
 }

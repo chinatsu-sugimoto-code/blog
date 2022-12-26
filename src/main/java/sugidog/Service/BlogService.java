@@ -47,7 +47,6 @@ public class BlogService {
 		String strDate = dateFormat.format(now);
 		Blog blog = new Blog();
 
-
 		blog.setFkUserName(name);
 		blog.setTitle(blogRequestForm.getTitle());
 		blog.setContents(blogRequestForm.getContents());
@@ -84,21 +83,9 @@ public class BlogService {
 			result.setTitle(blog.getTitle());
 			result.setContents(blog.getContents());
 
-			for (BlogDetail detail : blog.getBlogDetailList()) {
+			List<BlogDetail> blogDiteilList = blog.getBlogDetailList();
 
-				BlogDetailResult detailResult = new BlogDetailResult();
-
-				byte[] bytes = detail.getImage();
-				String image = Base64.getEncoder().encodeToString(bytes);
-				detailResult.setImage(image);
-
-				detailResult.setContentType(detail.getContentType());
-				detailResult.setTag(detail.getTag());
-				blogDetailResultList.add(detailResult);
-
-			}
-
-			result.setDetailList(blogDetailResultList);
+			result.setDetailList(blogDitailList(blogDetailResultList, blogDiteilList));
 
 			blogResultList.add(result);
 		}
@@ -106,7 +93,26 @@ public class BlogService {
 		return blogResultList;
 
 	}
-	
+
+	public List<BlogDetailResult> blogDitailList(List<BlogDetailResult> blogDetailResultList,
+			List<BlogDetail> blogDiteilList) {
+
+		for (BlogDetail detail : blogDiteilList) {
+
+			BlogDetailResult detailResult = new BlogDetailResult();
+
+			byte[] bytes = detail.getImage();
+			String image = Base64.getEncoder().encodeToString(bytes);
+			detailResult.setImage(image);
+
+			detailResult.setContentType(detail.getContentType());
+			detailResult.setTag(detail.getTag());
+			blogDetailResultList.add(detailResult);
+
+		}
+
+		return blogDetailResultList;
+	}
 
 	public List<Blog> blogSerch() {
 		return blogRepository.findAll();

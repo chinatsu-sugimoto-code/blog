@@ -18,12 +18,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	//UserDetailsServiceを利用出来るように＠Autowiredしておく
 	@Autowired
-	UserDetailsService userDetailsService;
+	public UserDetailsService userDetailsService;
 
 	//パスワードハッシュ化する実装を@Bean登録
 
 	@Bean
-	PasswordEncoder passwordEncoder() {
+	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				//ログイン画面とユーザー登録画面は誰でもアクセス可能
-				.antMatchers("/user/login", "/user/register").permitAll()
+				.antMatchers("/user/login", "/user/**", "/userCreate").permitAll()
 				//それ以外は認証必要
 				.anyRequest().authenticated();
 		http

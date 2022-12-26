@@ -33,7 +33,7 @@ public class BlogController {
 	 * ブログ一覧を画面に表示
 	 */
 	@GetMapping("user/list")
-	public String demo(Model model) throws IOException {
+	public String list(Model model) throws IOException {
 
 
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
