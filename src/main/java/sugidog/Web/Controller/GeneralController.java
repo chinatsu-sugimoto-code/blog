@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import sugidog.Service.BlogDetailService;
 import sugidog.Service.BlogService;
@@ -16,6 +17,7 @@ import sugidog.result.BlogDetailResult;
 import sugidog.result.BlogResult;
 
 @Controller
+@RequestMapping("/general")
 public class GeneralController {
 
 	/**
@@ -30,7 +32,7 @@ public class GeneralController {
 	/*
 	 * ブログTOPページ
 	 */
-	@GetMapping("/general/top")
+	@GetMapping("/top")
 	public String top(Model model) {
 
 		List<BlogResult> blogResultList = blogservice.result();
@@ -44,7 +46,7 @@ public class GeneralController {
 	/*
 	 * ブログ一覧ページ
 	 */
-	@GetMapping("/general/list")
+	@GetMapping("/list")
 	public String list(Model model) {
 
 		List<BlogResult> blogResultList = blogservice.result();
@@ -64,7 +66,7 @@ public class GeneralController {
 	/*
 	 * ブログ詳細ページ
 	 */
-	@GetMapping("/general/detail/{id}")
+	@GetMapping("/detail/{id}")
 	public String detail(@PathVariable int id, Model model) {
 
 		Blog article = blogservice.findbyId(id);
@@ -77,7 +79,7 @@ public class GeneralController {
 	/*
 	 * ブログ画像ページ
 	 */
-	@GetMapping("/general/imageList")
+	@GetMapping("/imageList")
 	public String imageList(Model model) {
 
 		List<BlogDetailResult> imageList = blogDetailService.blogDetailList();

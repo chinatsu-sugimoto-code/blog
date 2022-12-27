@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import sugidog.Service.BlogService;
 import sugidog.Service.UserService;
@@ -18,6 +19,7 @@ import sugidog.form.BlogRequestForm;
 import sugidog.result.BlogResult;
 
 @Controller
+@RequestMapping("user")
 public class BlogController {
 
 	/**
@@ -32,9 +34,8 @@ public class BlogController {
 	/*
 	 * ブログ一覧を画面に表示
 	 */
-	@GetMapping("user/list")
+	@GetMapping("list")
 	public String list(Model model) throws IOException {
-
 
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		List<BlogResult> result = userService.result(name);
@@ -44,7 +45,7 @@ public class BlogController {
 		return "user/list";
 	}
 
-	@GetMapping(value = "/user/add")
+	@GetMapping(value = "add")
 	public String displayAdd(Model model) {
 
 		model.addAttribute("blogRequestForm", new BlogRequestForm());
@@ -54,7 +55,7 @@ public class BlogController {
 	/*
 	 * ブログ新規登録画面
 	 */
-	@PostMapping("user/create")
+	@PostMapping("create")
 	public String create(@Validated @ModelAttribute BlogRequestForm blogRequestForm,
 			Model model) throws IOException {
 
@@ -66,7 +67,7 @@ public class BlogController {
 	/*
 	 * ブログ編集画面
 	 */
-	@GetMapping("user/edit")
+	@GetMapping("edit")
 	public String edit(Model model) {
 
 		model.addAttribute("message", "edit");

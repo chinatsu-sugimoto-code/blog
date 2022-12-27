@@ -1,10 +1,8 @@
 package sugidog.Service;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -20,6 +18,7 @@ import sugidog.repository.BlogDetailRepository;
 import sugidog.repository.BlogRepository;
 import sugidog.result.BlogDetailResult;
 import sugidog.result.BlogResult;
+import sugidog.util.DateUtil;
 
 /**
  * Blog情報 Service
@@ -42,17 +41,15 @@ public class BlogService {
 	public void create(BlogRequestForm blogRequestForm, String name)
 			throws IOException {
 
-		Date now = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		String strDate = dateFormat.format(now);
 		Blog blog = new Blog();
+		DateUtil dateUtil = new DateUtil();
 
 		blog.setFkUserName(name);
 		blog.setTitle(blogRequestForm.getTitle());
 		blog.setContents(blogRequestForm.getContents());
 		blog.setCreated(blogRequestForm.getCreated());
-		blog.setCreatedAt(strDate);
-		blog.setUpdatedAt(strDate);
+		blog.setCreatedAt(dateUtil.getCurrentDateTime());
+		blog.setUpdatedAt(dateUtil.getCurrentDateTime());
 		blog.setDeleteFlag(0);
 		Blog newBlog = blogRepository.save(blog);
 
