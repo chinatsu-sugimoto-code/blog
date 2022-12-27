@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
+	<title>ユーザー新規登録</title>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-sm navbar-light bg-light mb-3">
+		<span class="navbar-toggler-icon"></span>
+		<div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
+		</div>
+	</nav>
+	<div class="container">
+		<h1>ユーザー登録画面</h1>
+
+		<form method="POST" th:action="@{/userCreate}" th:object="${registerForm} " enctype="multipart/form-data">
+			<div>
+				<p>メールアドレス</p>
+				<p><input type="text" name="email" th:value="*{email}" class="form-control" /></p>
+				<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+					メールアドレスに関するエラー
+				</p>
+			</div>
+			<div>
+				<p>パスワード</p>
+				<p><input type="password" name="password" th:value="*{password}" class="form-control" /></p>
+				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+					パスワードに関するエラー
+				</p>
+			</div>
+			<div>
+				<p>ニックネーム</p>
+				<p><input type="text" name="nickName" th:value="*{nickName}" class="form-control" /></p>
+				<p th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}">
+					ニックネームに関するエラー
+				</p>
+			</div>
+			<div>
+				<p>性別</p>
+				<p class="input-group mb-3"><input type="text" name="sex" th:value="*{sex}" class="form-control" /></p>
+				<p th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">
+					性別に関するエラー
+				</p>
+			</div>
+			<div class="form-group">
+				<label>画像：</label>
+				<input type="file" th:field="*{image}">
+			</div>
+
+			<div class="form-group">
+				<label>自己紹介</label>
+				<textarea th:field="*{selfIntroducion}" class="form-control"></textarea>
+			</div>
+
+			<div>
+				<button type="submit" class="btn btn-outline-warning">登録</button>
+			</div>
+		</form>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
+	<title>ユーザーログイン</title>
+</head>
+
+<body>
+	<div class="container" style="text-align: center;">
+		<h1 class="h3 mt-2 mb-3 font-weight-normal">ログイン</h1>
+
+		<!--ログインエラー時にメッセージを表示 -->
+		<div th:if="${param.error}" class="alert alert-danger" role="alert">
+			名前またはパスワードが正しくありません
+		</div>
+		<form method="POST" th:action="@{/login}" class="w-50 mx-auto">
+			<input type="text" name="email" class="form-control" placeholder="メールアドレス" />
+			<input type="password" name="password" class="w-30 form-control" placeholder="パスワード" />
+			<input class="btn btn-outline-primary my-1" type="submit" value="Sign In" />
+		</form>
+
+		<div class="col p-2 d-flex flex-column position-static w-50 mx-auto">
+			<a th:href="@{register}" class="btn btn-outline-secondary my-1">新規登録</a>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

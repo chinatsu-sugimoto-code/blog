@@ -24,16 +24,16 @@
 		</div>
 	</nav>
 	<main class="container">
-		<div class="overflow-hidden" style="text-align: center; margin-bottom: 3rem;">
-			<img src="https://livedoor.blogimg.jp/namekkutake/imgs/d/d/dd074719.jpg" alt="First slide">
+		<div class="overflow-hidden" style="background-color: #725846;text-align: center; margin-bottom: 3rem;">
+			<img src="https://media.istockphoto.com/id/1197121742/ja/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88/%E9%BB%84%E8%89%B2%E3%81%AE%E5%B9%B8%E3%81%9B%E3%81%AA%E6%9F%B4%E7%8A%AC%E7%8A%AC%E8%B5%A4%E6%AF%9B%E3%81%AE%E6%97%A5%E6%9C%AC%E7%8A%AC%E3%81%AE%E7%AC%91%E9%A1%94%E3%81%AE%E8%82%96%E5%83%8F%E7%94%BB.jpg?s=612x612&w=0&k=20&c=sue52jzmexnmPC2yQimaqVZdSWM8ibpcW0Et966QxI0="
+				alt="First slide">
 		</div>
-
 		<div class="row">
 			<div class="col">
 				<div
 					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<a href="#" class="stretched-link">ブログTOP</a>
+						<a th:href="@{top}" class="stretched-link">ブログTOP</a>
 					</div>
 				</div>
 			</div>
@@ -41,7 +41,7 @@
 				<div
 					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<a th:href="@{top}" class="stretched-link">記事一覧</a>
+						<a th:href="@{list}" class="stretched-link">記事一覧</a>
 					</div>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 				<div
 					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<a href="#" class="stretched-link">画像一覧</a>
+						<a th:href="@{imageList}" class="stretched-link">画像一覧</a>
 					</div>
 					<div class="col-auto d-none d-lg-block">
 					</div>
@@ -61,15 +61,14 @@
 				<h2 class="blog-post-title">新着記事</h2>
 				<hr>
 				<article class="blog-post" th:each="result:${resultList}" th:object="${result}">
-					<h4 th:text="*{title}" style="color: #444444;">タイトル</h4>
+					<h4 th:text="${result.title}" style="color: #444444;">タイトル</h4>
 					<a th:href="@{detail/{id}(id=${result.id})}">詳細を見る→</a>
-					<p th:text="*{contents}" style="color: #444444;">コンテンツ</p>
-					<img src="https://gakumado.mynavi.jp/system/production/image/image/000/112/443/112443/wysiwyg_3c9b533e2a530a77a573.jpg"
-						alt="First slide" style="width: 60px; height: 45px;">
-					<p th:text="*{createdAt}" style="color: #999999;">作成日</p>
-					<!--<img th:src="*{'data:image/jpeg;base64,'+{image}}" alt="" />-->
-
-					<hr>
+					<p th:text="${result.contents}" style="color: #444444;">コンテンツ</p>
+					<th:block th:each="detail : ${result.detailList}">
+						<img th:src=" 'data:' + ${detail.contentType} + ';base64,' + ${detail.image}"
+							style="max-width:200px;">
+							<p th:text="${detail.tag}">
+					</th:block>
 				</article>
 				<nav class="blog-pagination" aria-label="Pagination">
 					<a class="btn btn-outline-primary" href="#">Older</a>
@@ -80,12 +79,15 @@
 
 			<div class="col-md-4">
 				<div class="position-sticky" style="top: 2rem;">
-					<div class="p-4 mb-3 bg-light rounded">
+					<div class="p-4 mb-3  rounded " style="text-align:center;">
 						<h4 class="fst-italic">Profile</h4>
+
+						<img src="https://images.pexels.com/photos/4588027/pexels-photo-4588027.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							alt="写真" style="text-align:center; border-radius: 50%; width:130px; height: 130px;">
 						<p class="mb-0">柴犬の日常ブログ</p>
 					</div>
 
-					<div class="p-4">
+					<div class="p-4" style="text-align:center;">
 						<h4 class="fst-italic">Archives</h4>
 						<ol class="list-unstyled mb-0">
 							<li><a href="#">3月 2022</a></li>
@@ -105,10 +107,8 @@
 
 					<div class="p-4">
 						<h4 class="fst-italic">Tag</h4>
-						<ol class="list-unstyled">
-							<li><a href="#">柴犬がいる生活</a></li>
-							<li><a href="#">食事</a></li>
-							<li><a href="#">散歩</a></li>
+						<ol th:each="blogDetail:${blogDetailList}" th:object="${blogDetail}" class="align-middle">
+							<a href="#" th:text="${blogDetail.tag}"></a>
 						</ol>
 					</div>
 				</div>

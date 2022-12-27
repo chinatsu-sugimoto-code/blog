@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
+	<title>登録完了</title>
+</head>
+
+<body>
+	<main class="container">
+		<h1>登録完了したよ！</h1>
+		<div class="row">
+			<div class="col">
+				<div
+					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div class="col p-4 d-flex flex-column position-static">
+						<a th:href="@{list}" class="btn btn-outline-secondary">自分のブログを一覧を見る</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div
+					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div class="col p-4 d-flex flex-column position-static">
+						<a th:href="@{add}" class="btn btn-outline-success">ブログを書く</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+</body>
+
+</html>

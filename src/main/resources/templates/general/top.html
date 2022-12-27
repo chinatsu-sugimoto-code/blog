@@ -23,7 +23,6 @@
 			</ul>
 		</div>
 	</nav>
-	<!--<h2 th:text="${message}"></h2> -->
 	<main class="container">
 		<div class="overflow-hidden" style="text-align: center; margin-bottom: 3rem;">
 			<img src="https://livedoor.blogimg.jp/namekkutake/imgs/d/d/dd074719.jpg" alt="First slide">
@@ -33,7 +32,7 @@
 				<div
 					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<a href="#" class="stretched-link">ブログTOP</a>
+						<a th:href="@{top}" class="stretched-link">ブログTOP</a>
 					</div>
 				</div>
 			</div>
@@ -49,7 +48,7 @@
 				<div
 					class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
-						<a href="#" class="stretched-link">画像一覧</a>
+						<a th:href="@{imageList}" class="stretched-link">画像一覧</a>
 					</div>
 					<div class="col-auto d-none d-lg-block">
 					</div>
@@ -61,14 +60,13 @@
 				<article class="blog-post" th:object="${article}">
 					<h2 class="blog-post-title" th:text="*{title}"></h2>
 					<hr>
-					<p class="blog-post-meta" th:text="*{createdAt}"><a href="#">Mark</a></p>
+					<!--<p class="blog-post-meta" th:text="*{createdAt}"><a href="#">Mark</a></p> -->
 
 					<p th:text="*{contents}">.</p>
-					<nav class="blog-pagination" aria-label="Pagination">
-						<a class="btn btn-outline-primary" href="#">Older</a>
-						<a class="btn btn-outline-secondary disabled" href="#" tabindex="-1"
-							aria-disabled="true">Newer</a>
-					</nav>
+					<th:block th:each="detail : ${article.detailList}">
+						<img th:src=" 'data:' + ${detail.contentType} + ';base64,' + ${detail.image}"
+							style="max-width:200px;">
+					</th:block>
 				</article>
 
 			</div>

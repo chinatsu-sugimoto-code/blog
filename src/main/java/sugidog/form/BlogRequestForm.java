@@ -2,10 +2,17 @@ package sugidog.form;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.Getter;
+import lombok.Setter;
+
 /*
  * Blog情報　リクエストデータ
  */
 
+@Getter
+@Setter
 public class BlogRequestForm implements Serializable {
 	/**
 	 * タイトル
@@ -19,41 +26,12 @@ public class BlogRequestForm implements Serializable {
 	private String contents;
 
 	//作成者ID
-	private int created;
+	private String created;
 
-	//画像
-	private String image;
+	//画像データ
+	private MultipartFile image;
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getContents() {
-		return contents;
-	}
-
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
-
-	public int getCreated() {
-		return created;
-	}
-
-	public void setCreated(int created) {
-		this.created = created;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
+	//タグ
+	private String tags;
 
 }
